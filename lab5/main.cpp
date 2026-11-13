@@ -1,19 +1,36 @@
 #include "Course.h"
 #include "Professor.h"
+#include "Student.h"
 
 #include <iostream>
 
 int main() {
-    Professor professor("Ivanov");
-    Course course("C++ Programming", &professor);
+    Professor professor1("Ivanov");
+    Professor professor2("Petrova");
 
-    course.addTopic("Classes and objects");
-    course.addTopic("Inheritance");
-    course.addTopic("STL");
+    Course cppCourse("C++ Programming", &professor1);
+    Course algoCourse("Algorithms", &professor2);
 
-    std::cout << "Course: " << course.getName() << '\n';
-    std::cout << "Professor: " << course.getProfessor()->getName() << '\n';
-    std::cout << "Topics: " << course.getTopics().size() << '\n';
+    cppCourse.addTopic("Classes and objects");
+    cppCourse.addTopic("Inheritance");
+    cppCourse.addTopic("STL");
+
+    algoCourse.addTopic("Sorting");
+    algoCourse.addTopic("Graphs");
+
+    Student student("Anna");
+    student.enroll(&cppCourse);
+    student.enroll(&algoCourse);
+    student.enroll(&cppCourse); // дубликат не добавится
+
+    std::cout << "Student: " << student.getName() << '\n';
+    std::cout << "Courses:\n";
+
+    for (Course* course : student.getCourses()) {
+        std::cout << "  " << course->getName() << '\n';
+    }
+
+    std::cout << "Number of courses: " << student.getCourses().size() << '\n';
 
     return 0;
 }
