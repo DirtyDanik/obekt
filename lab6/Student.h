@@ -16,8 +16,10 @@ public:
     const std::vector<Course*>& getCourses() const;
     int getCourseCount() const;
 
+    // В этой работе методы не виртуальные.
     std::string getStatus() const;
     int getTuition() const;
+    int getScholarship() const;
 
 private:
     std::string name_;

@@ -39,3 +39,7 @@ std::string Student::getStatus() const {
 int Student::getTuition() const {
     return 0;
 }
+
+int Student::getScholarship() const {
+    return 0;
+}
